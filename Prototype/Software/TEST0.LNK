@@ -9,7 +9,7 @@ test0.rel
 cprintf.rel
 delay.rel
 sio0.rel
-lites.rel
+literhyo.rel
 io.rel
 cpu.rel
 echo.rel

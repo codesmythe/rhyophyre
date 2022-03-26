@@ -27,9 +27,9 @@ RM = rm -f
 HEX2BIN = ./hex2bin
 BIN2HEX = bin2hex
 
-HFILES = z180.h z180hc.h mytypes.h cprintf.h mark4.inc clock.h
-SFILES = z180hc.s z180cpu.s errors.s table.s mark4.inc
-TEST0 = ycrt0.rel cprintf.rel sio0.rel delay.rel lites.rel io.rel cpu.rel \
+HFILES = z180.h z180hc.h mytypes.h cprintf.h rhyophyre.inc clock.h
+SFILES = z180hc.s z180cpu.s errors.s table.s literhyo.s
+TEST0 = ycrt0.rel cprintf.rel sio0.rel delay.rel literhyo.rel io.rel cpu.rel \
 	echo.rel clk-cal.rel nvtest.rel
 ZIP0 = test0.bin *.txt *.c *.h *.s *.inc *.lnk Makefile
 
@@ -98,6 +98,7 @@ ycrt0.rel:	ycrt0.s z180cpu.s
 delay.rel:	delay.s
 sio0.rel:	sio0.s z180cpu.s
 lites.rel:	lites.s mark4.inc
+literhyo.rel:   literhyo.s rhyophyre.inc
 io.rel:		io.s
 cpu.rel:	cpu.s z180cpu.s
 clk-cal.rel:	clk-cal.s

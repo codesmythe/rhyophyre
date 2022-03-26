@@ -120,14 +120,13 @@ void main(void)
 {
 	uint8 i, j;
 
-	if ( check_P10() ) return;
+/*	if ( check_P10() ) return; */
 
 	wait(150);
 
 	numout(5);
 	cputype = cpu_type();
 	numout(cputype ? cputype : 25);
-
 	do {
 		i = check_cts();
 		if (i==0) numout(4);
@@ -141,6 +140,7 @@ void main(void)
 		for (j=0; j<i; j++) putchar(' ');
 		putstr(qbf);
 	}
+#if 0
 
 	printf(	"Test 1:  passed   (5 flashes)\n"
 				"    The board I/O jumpers (P10) are set to 0x80 -- (off, on, on, on)\n"
@@ -183,6 +183,7 @@ void main(void)
 	}
 
 	printf(	"\nEnd of TEST0.BIN (" DATE "), \"Goodbye!\"\n <cpu halt>");
+#endif
 	return;
 }
 
