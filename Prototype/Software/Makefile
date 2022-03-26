@@ -17,15 +17,14 @@ CCOPT =
 #COPTS = $(CCOPT) --max-allocs-per-node 1000  # use with SDCC 3.3.0 (25000 for better code)
 COPTS = $(CCOPT)
 
-AS = sdasz80d
+AS = sdasz80
 #AOPTS = -plosff
 AOPTS = -plosff
 #LD = $(CC)
 LD = sdldz80
 LOPTS = --verbose --code-loc 0x100
-RM = del
-UNIX = C:\util\Unix\
-HEX2BIN = hex2bin
+RM = rm -f
+HEX2BIN = ./hex2bin
 BIN2HEX = bin2hex
 
 HFILES = z180.h z180hc.h mytypes.h cprintf.h mark4.inc clock.h
@@ -46,7 +45,7 @@ ZIP0 = test0.bin *.txt *.c *.h *.s *.inc *.lnk Makefile
 	copy $*.ihx $*.hex
 
 .ihx.bin:
-	hex2bin -R32K -o $*.bin $*.ihx
+	$(HEX2BIN) -l 8000  $*.ihx
 
 
 
@@ -61,7 +60,7 @@ test0.ihx:	test0.rel $(TEST0) test0.lnk
 	$(LD) -nf test0.lnk
 
 test0.bin:	test0.ihx
-	hex2bin -R 8k -o $*.bin $*.ihx
+	$(HEX2BIN) -l 2000 $*.ihx
 
 test0.zip:	test0.bin
 	pkzip test0 $(ZIP0)	
@@ -69,17 +68,17 @@ test0.zip:	test0.bin
 
 
 tidy:
-        $(RM) *.tmp
+	$(RM) *.tmp
 	$(RM) *.lst
-        $(RM) *.sym
-        $(RM) *.asm
-        $(RM) *.noi
+	$(RM) *.sym
+	$(RM) *.asm
+	$(RM) *.noi
 
 clean:  tidy
 	$(RM) *.ihx
 	$(RM) *.hex
-        $(RM) *.rel
-        $(RM) *.map
+	$(RM) *.rel
+	$(RM) *.map
 	$(RM) *.bin
 
 spotless:	clean
